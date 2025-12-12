@@ -51,8 +51,8 @@ public void startEngine() {
 
 | Term            | Meaning       | Has Code?     | Must Child Override? |
 | -------------   | ------------- | ------------- | -------------------- |
-| Abstract Method | A method with no implementation  |  No  |  Yes |
-| Concrete Method | A method that already works  |  Yes  |  No  |
+| **Abstract Method** | A method with no implementation  |  No  |  Yes |
+| **Concrete Method** | A method that already works  |  Yes  |  No  |
 
 
 Here is the solution to the question:
@@ -336,7 +336,311 @@ Car myCar  =  new Car( ) ;	// the Car object lives on the heap
 
 **Quick Summary Table**
 
+| Feature       | Local Variable    | Global Variable    |
+| ------------- | ----------------- | ------------------ |
+| **Scope**     | Inside the Function/ Block only    | Accessible Anywhere |
+| **Lifetime**  | Only while the Function runs | Whole Program Runtime |
+| **Memory**    | Stack             | Global/ Static region |
+
+---
+
 ### 1.3 Parameter Passing
+
+**a) Explain the difference between passing by value and passing by reference. When would you use each?**
+
+**Passing by Value**
+- You give a copy of the data to the method.
+- Changes inside the method **do NOT affect** the original variable.
+- Think of it like giving someone a **photocopy of your homework**. They can scribble on it, but your original stays the same.
+
+Example:
+```java
+```
+
+**When to Use:**
+- Use this when you don’t want the method to change the original data.
+
+**Passing Reference**
+- You give the **actual variable** (or a reference to it) to the method.
+- Changes inside the method **do affect** the original variable.
+- Think of it like giving someone your **actual notebook**. Anything they write is in your notebook.
+
+Example:
+```java
+```
+
+**When to Use:**
+Use this when you **want the method to modify the original data**, like updating an object or a list.
+
+---
+
+**b) In Java, when you pass an object to a method, what actually gets passed? How does this affect what you can do inside the method?**
+
+**What Actually Gets Passed?**\
+When you pass an object to mathod in Java, you are **not giving the method the whole object**.
+
+You are giving the method a **copy of the directions to find the object.**
+
+Think of it like this:
+- The object is a **house.**
+- The variable that points to the object is the **address** of the house.
+- When you pass the object to a method, you are giving the method a **copy of the address**, not the house itself.
+
+So the method knows **where the house is**, and it can go inside and make changes.
+
+**How does this affect what you can do inside the method?**\
+
+Because the method receives a **copy of the address**, it can:
+
+- **Change what's inside the house**
+    - For example, if the object has a name, the method can change that name.\
+    - This change will be seen outside the method because you're changing the            *same* house.
+- **Change which house the outside variable points to**
+    - If the method tries to use a **different address**, this change **does not**
+      affect the original variable.
+
+---
+
+### 1.4 Static Members
+
+**a) Explain what a static variable is and how it is unique**
+
+Imagine a classroom where every student has their **own notebook.**\
+Those are **regular variables–** each person gets their own copy.
+
+Now imagine the class has **ONE big whiteboard** at the front of the room.\
+Everyone in the class can **see it**, **use it**, and **change it.**
+
+That whiteboard is a **static variable.**
+
+**So a** `Static Variable` **is:**
+- **Shared by ALL objects** of that class
+- There is **only one copy**, no matter how many objects you make
+- If one object changes it, **everyone sees the change**
+
+It’s unique because **it belongs to the class itself**, not to each individual object.
+
+---
+
+**b) Write pseudocode showing a** `Counter` **class with a static variable that tracks how many Counter objects have been created.**
+
+Here is a simple pseudocode example using the same "whiteboard" idea:
+
+```java
+// Counter class
+class Counter {
+
+    // Static variable shared by ALL Counter objects
+    static count = 0
+
+    // Constructor
+    constructor() {
+        // Increase the count every time a new Counter object is made
+        count = count + 1
+    }
+
+    // Method to show how many objects exist
+    method showCount() {
+        print("Total counters made: " + count)
+    }
+}
+```
+
+Explanation:
+- The static variable `count` is like a **big scoreboard** on the wall.
+- Every time you create a new Counter object, it says:\
+      **"Hey, add 1 to the scoreboard!"**
+- All Counter objects look at the **same scoreboard**, not their own.
+
+---
+
+## Section 2: Data Structures Analysis
+
+### 2.1 Data Structure Selection
+
+**For each scenario, choose the most appropriate data structure and explain why:**
+
+**a) Implementing an undo feature in a text editor**
+- **Data Structure:** Stack
+- **Justification:**
+
+  A stack works like a **pile of books.** You alwyas remove the book you             placed **last.**
+
+  Undo works the same way:
+  
+  The **last action you did** is the **first one you undo.** That's why a stack is
+  perfect.
+
+**b) Storing key-value pairs for a phone directory where you need fast lookups by name**
+- **Data Structure:** HashMap (or Hash Table)
+- **Justification:**
+
+  A HashMap is like a **magical dictionary** where you can find things super fast.\
+  You look up a person’s name and instantly get their phone number.\
+  It gives **fast search**, much faster than scanning a list\
+
+**d) Representing a family tree with relationships between family members**
+- **Data Structure:** Tree
+- **Justification:**
+
+  A tree looks like a real family tree:
+  - Parents at the top
+  - Children connected below
+  - You can clearly show relationships
+  
+  It's perfect for representing **who is related to who.**
+
+**e) Storing a list of students where you frequently need to add/remove students from the middle of the list**
+- **Data Structure:** Linked List
+- **Justification:**
+
+  A linked list is like a **chain of people holding hands.**\
+  If you want to add or remove someone in the middle, you just tell two people to
+  hold different hands — very easy.
+
+  In an **array**, you’d have to **move everyone over**, which is slow.\
+  In a **linked list**, you only fix a couple of links.
+
+---
+
+### 2.2 Linked List Implementation
+Write pseudocode for a simple singly linked list node structure and implement an `insert` method that adds a new element at the beginning of the list.
+
+```java
+```
+
+---
+
+### 2.3 Data Structure Trade-Offs
+
+**a) Compare arrays and linked lists. For each structure, give one advantage and one disadvantage:**
+
+**Array advantage:**
+Arrays let you **get to any item really fast** because everything is stored next to each other, like seats in a movie theater.\
+You know the seat number → you can jump straight to it.
+
+**Array disadvantage:**
+Arrays **can’t easily grow or shrink.** If you want to add or remove something in the middle, you often have to **move a bunch of items around**, which is slow.
+
+**Linked list advantage:**
+Linked lists make it **easy to add or remove items anywhere.**\
+Each item just points to the next one, like kids holding hands in a line — you can insert a new kid without shifting everyone.
+
+**Linked list disadvantage:**
+Linked lists are **slow to look things up** because you must start at the beginning and walk through each node one by one.\
+You **can’t jump** to an item directly like you can in an array.
+
+---
+
+## Section 3: Access Control and Encapsulation
+
+### 3.1 Access Modifiers
+
+**a) Explain the purpose of private, protected, and public access modifiers.**\
+Think of access modifiers like **locks on doors** in a house. They control **who is allowed to go inside** (who can access variables/ methods)
+
+**Private**\
+**Who can access it?**\
+- Only the **same class**\
+**Purpose:**\
+- To hide and protect data so no one else can touch it directly.
+- Prevents accidental changes from outside the class.
+**Easy idea:**
+- Like your **diary.** Only *you* can open it.
+
+**Protected**\
+**Who can access it?**\
+- The **same class**
+- Any **subclass (child class)**
+- Classes in the **same package**
+**Purpose:**
+- To allow child classes to use and extend behavior, but still keep it somewhat restricted.
+**Easy idea:**
+- Like a **shared family room.** Your family (child classes) can enter, but strangers cannot.
+
+**Public**\
+**Who can access it?**
+- **Anyone**, from anywhere in the program.
+**Purpose:**
+- To make something openly available to use.
+**Easy idea:**
+- Like a **public park**. Everyone can go in.
+
+**Summary Table**
+
+| Modifier      | Who Can Access It?    | Simple Explanation    |
+| ------------- | --------------------- | --------------------- |
+| **Private**   | Same class only       | "Only I can use it."  |
+| **Protected** | Same class + subclasses + same package | "My family can use it too." |
+| **Public**    | Anyone                | "Everyone can use it."|
+
+---
+
+**b) Why would you make member variables private and provide public getter/setter
+methods instead of making the variables public directly?**\
+The main reason is **encapsulation** - protecting how data is accessed and changed.
+
+Here's what that means:
+
+**1. Control How the Data is Changed**\
+If variables were public, anyone could change them to anythin at any time:
+
+```java
+person.age = -10;    // This should NOT be allowed!
+```
+By making the variables private and using a setter, you can **check** values before accepting them:
+```java
+public void setAge(int a) {
+    if (a >= 0) {
+        age = a;
+    }
+}
+```
+This keeps your object from getting into a "broken" state.
+
+Now, let's shift our focus to a different point..
+
+**Why is the setter method (setAge) public instead of private?**\
+Because:
+
+- **Private variables** mean only the class itself can directly touch the data.
+- But if the variable is private, the only way for code outside the class to change it is through a **public** method.
+
+So the rule is:
+- Variables = private
+- Getter/setter methods = public
+
+Why?
+
+Because if the setter were **private**, nobody outside the class could use it — meaning **no one could change the variable at all**, which defeats the purpose of having a setter.
+
+Alright, let's circle back to our main point..
+
+**2. Hide the Internal Details**\
+Private variables let you hide how the data is stored inside the class.
+
+If you ever decide to change your internal structure, the rest of your program **doesn't break** because everyone interacts through the same getter/setter methods
+
+**3. Read-Only Or Write-Only Control**\
+Maybe you want someone to see a value but not change it, or change it but not see it.
+
+Getters/ Setters let you decide:
+- Provide a **getter only** (read-only)
+- Provide a **setter only** (write-only)
+- Provide both (read/write)
+
+**4. Add Extra Behavior**
+You can add logic inside getters/ setters:
+
+- Logging changes
+- Validating data
+- Automatically updating related values
+- Without changing how the class is used.
+
+---
+
+### 3.2 Class Design
+Design a simple `BankAccount` class that demonstrates good encapsulation practices. List the member variables and methods you would include, along with their access modifiers.
 
 
 
