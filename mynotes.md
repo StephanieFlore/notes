@@ -203,7 +203,7 @@ This works because of a feature called:
 
 **Dynamic Binding or Runtime Polymorphism**
 
-It means:\
+This means:\
 When you call a method on a reference, **Java decides which version to run at runtime**, based on the **actual object**, NOT the reference type.
 
 Here is a simple analogy to help you understand:
@@ -219,6 +219,127 @@ But the actual person standing there is **Car**, so **Car** will do the job.
 - `Vehicle v = new Car();` means the reference is Vehicle, but the object is Car.
 - Java uses dynamic binding to figure out which method to call.
 - Since the object is a Car, it runs Car's overridden calculateFuelEfficiency() method.
+
+---
+
+### 1.2 Memory Management Concepts
+
+**a) Explain the difference between stack and heap memory allocation. Give an example of data that would typically be stored in each.**
+
+Imagine your computer has two special “storage areas” in its brain:
+
+`Stack` – The neat, organized shelf\
+`Heap` – The big, messy toy box
+
+**What is a Stack?**\
+The **stack** is like a small shelf where things are stored in a very organized way.
+- You can only put something on the **top** of the shelf.
+- You can only take something from the top.
+- Everything happens **fast** because it’s so organized.
+
+**What Get Stored Here?**\
+Things that don’t stay around very long – like:
+- Local variables inside of a function 
+
+Example: 
+```java
+int x = 5; (inside a method)
+```
+These disappear when the method is done just like toys you only play with for a moment.
+
+`Heap` – The big, messy toy box
+The **heap** is like a huge toy box.
+
+You can put things inside whenever, wherever, and take them out in any order.
+- It’s much bigger than the stack.
+- But because it’s messier, it’s slower to find stuff.
+
+**What Gets Stored Here?**\
+Things that need to stay around longer or are created with `new`, like:
+- Objects (Car, Dog, Student, etc.)
+- Arrays
+- Anything you want to use even after a method ends
+
+Example: 
+```java
+Car myCar  =  new Car( )
+```
+The `Car` object is stored in the **heap.**
+
+**Stack Memory Allocation**
+The **stack** is a region of memory that stores data with a very strict and organized order. It operates in a Last-In, First-Out (LIFO) manner.
+
+- Extremely fast access
+- Automatically managed (memory is freed when a function ends)
+- Stores short-lived data
+
+**This is What is Typically stored on the Stack:**
+- Local variables inside functions
+- Function parameters
+- Return addresses
+
+Example:
+```java
+void stackExample( )  {
+    int count = 5 ;		// stored on the stack
+}
+```
+
+**Heap Memory Allocation**
+The **heap** is a large, more flexible region of memory used for data that needs to live longer or has a dynamic size.
+- Manually managed (you allocate with `new` and later deallocates or rely on garbage collection)
+- Slower to access
+- Used for **objects** or **data whose size you don’t know ahead of time**
+
+**This is What is Typically stored on the Heap:**
+- Objects created with `new`
+- Arrays
+- Data structures like lists, trees, hash maps, etc.
+
+Example:
+```java
+Car myCar  =  new Car( ) ;	// the Car object lives on the heap
+```
+`myCar` stays in memory until the program is done with it or the garbage collector removes it.
+
+---
+
+**b) What is the difference between a local variable and a global variable in terms of:**
+
+- **Scope**
+- **Lifetime**
+- **Memory Location**
+
+`Local Variable`
+
+**Scope**
+- Only accessible *inside* the function, method, or block where it is declared. 
+- You **cannot** use it outside that specific area.\
+**Lifetime**
+- Exists **only while the function is running.**
+- Once the function is finished, the variable is destroyed.\
+**Memory Location**
+- Typically stored on the **stack**, because they are short-lived and automatically managed.
+
+`Global Variable`
+
+**Scope**
+- Accessible from **any part of the program**, unless restricted by access modifiers or namespaces.
+
+**Lifetime**
+- Exists for the **entire duration of the program.**
+- It is created when the program starts and destroyed when the program ends.
+
+**Memory Location**
+- Stored in a **fixed memory area** (often called the global/static data segment), not on the stack or heap. 
+- This allows them to persist for the whole program.
+
+**Quick Summary Table**
+
+### 1.3 Parameter Passing
+
+
+
 
 
 
