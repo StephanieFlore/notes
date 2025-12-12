@@ -642,8 +642,80 @@ You can add logic inside getters/ setters:
 ### 3.2 Class Design
 Design a simple `BankAccount` class that demonstrates good encapsulation practices. List the member variables and methods you would include, along with their access modifiers.
 
+Below is a clean, well-designed version of what a **BankAccount** class should look like, showing:
+- **private** member variables (to protect the data)
+- **public** methods (to safely interact with the data)
+- **what each part does**
+
+BankAccount Class (Pseudocode)
+```java
+class BankAccount {
+
+    // ---- Member Variables (Fields) ----
+    private accountNumber
+    private accountHolderName
+    private balance
 
 
+    // ---- Constructor ----
+    public BankAccount(number, name, startingBalance) {
+        accountNumber = number
+        accountHolderName = name
+        balance = startingBalance
+    }
 
 
+    // ---- Getter Methods (read-only access) ----
+    public getAccountNumber() {
+        return accountNumber
+    }
 
+    public getAccountHolderName() {
+        return accountHolderName
+    }
+
+    public getBalance() {
+        return balance
+    }
+
+
+    // ---- Setter Methods (optional, if changes allowed) ----
+    public setAccountHolderName(newName) {
+        accountHolderName = newName
+    }
+
+
+    // ---- Behavior Methods (what the account can DO) ----
+    public deposit(amount) {
+        if amount > 0 {
+            balance = balance + amount
+        }
+    }
+
+    public withdraw(amount) {
+        if amount > 0 AND amount <= balance {
+            balance = balance - amount
+        }
+    }
+}
+```
+
+**Why This Design is Good**
+
+**Member Variables are Private**
+- No one can directly change the balance or account number by accident.
+- Protects the internal state of the object.
+
+**Public Methods Control Access**
+- Only safe operations (deposit, withdraw) can change the balance.
+- You prevent invalid actions, like:
+    - setting the balance to a negative number
+    - changing the account number to something invalid
+    - withdrawing more than what’s available
+
+**Encapsulation Keeps the Class Safe and Controlled**
+- You hide the data ("private")
+- You control updates through "public" methods
+- You ensure the object always stays in a valid state
+
+  
