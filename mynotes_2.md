@@ -15,38 +15,53 @@ Memory access speeds differ by huge orders of magnitude
 
 ---
 
-**Local vs Global Variables**
+**Local vs. Global Variables**
 
 `Local Variables`
-- Live on the stack
-- Only accessible inside the block/function where declared.
+- Live on the **stack**
+- Only accessible **inside the block/function** where declared.
 - Automatically destroyed when the function ends.
 
 `Global Variables`
-- Stored in the global/ static memory segment (not stack or heap)
-- Exist for the entire duration of the program.
+- Stored in the **global/ static memory segment** (not stack or heap)
+- Exist for the **entire duration** of the program.
 - Accessible from **any file/function** (if declared properly). 
 
 
-**Constant Vs. Static**
+**Constant vs. Static**
 
 `Constant`
 - Value **cannot change** after initialization.
+
   Example:
+  
   `const int x = 5; → immutable`
 
 **static (in a class)**
 - Belongs to the class, not to individual objects.
-- Can be used without creating an object:
+- Can be used **without creating an object:**\
   `ClassName::method( )`
 
 **static (in a function)**
-- Remember its value between function calls.
+- Remember its value **between function calls.**
 
 Professor Clark EMPHASIZED:
 
-static is **not equal** to constant
-Static is not about immutability. It is about lifetime / class-level existence.
+`static` is **not equal** to `const`
+Static is **not** about immutability. It is about **lifetime / class-level existence.**
+
+---
+
+# 2. Pointers, References, Parameters Passing
+
+
+**Pointer**
+- Holds *memory address*
+- Can be a `nullptr`
+- Syntax: `int* p`
+
+**Reference**
+
 
 `std::thread` Essentials
 
